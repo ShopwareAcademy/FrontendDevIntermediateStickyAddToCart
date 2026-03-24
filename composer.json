@@ -1,0 +1,28 @@
+{
+  "name": "academy/frontend-dev-intermediate-sticky-add-to-cart",
+  "description": "Academy Plugin: Practical Lab: Sticky Add To Cart",
+  "type": "shopware-platform-plugin",
+  "version": "1.0.0",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Shopware Academy",
+      "email": "academy@shopware.com"
+    }
+  ],
+  "require": {
+    "shopware/core": "~6.7.0"
+  },
+  "extra": {
+    "shopware-plugin-class": "FrontendDevIntermediateStickyAddToCart\\FrontendDevIntermediateStickyAddToCart",
+    "label": {
+      "de-DE": "Frontend Dev Intermediate - Sticky Add To Cart",
+      "en-GB": "Frontend Dev Intermediate - Sticky Add To Cart"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "FrontendDevIntermediateStickyAddToCart\\": "src/"
+    }
+  }
+}

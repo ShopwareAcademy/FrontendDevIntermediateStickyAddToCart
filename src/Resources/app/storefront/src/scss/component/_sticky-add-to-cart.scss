@@ -1,0 +1,13 @@
+.academy-sticky-add-to-cart-container {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 250ms ease-out, opacity 200ms ease;
+    will-change: transform, opacity;
+
+    &.is-visible {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
