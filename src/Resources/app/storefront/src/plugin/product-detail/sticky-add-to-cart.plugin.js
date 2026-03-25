@@ -5,7 +5,7 @@ export default class StickyAddToCart extends Plugin {
 
     static options = {
         buyFormSelector: 'form.buy-widget[data-add-to-cart="true"]',
-        stickyButtonSelector: '.academy-sticky-add-to-cart-container.button',
+        stickyButtonSelector: 'button',
         buyButtonSelector: '.btn-buy[type="submit"]',
     };
 
@@ -48,9 +48,7 @@ export default class StickyAddToCart extends Plugin {
         this._buyForm = document.querySelector(this.options.buyFormSelector);
 
         if (null === this._buyForm) {
-
             this.el.classList.remove('is-visible');
-
             return;
         }
 
