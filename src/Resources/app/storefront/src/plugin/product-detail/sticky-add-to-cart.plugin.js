@@ -4,19 +4,19 @@ import ViewportDetection from 'src/helper/viewport-detection.helper';
 export default class StickyAddToCart extends Plugin {
 
     static options = {
-        buyFormSelector: 'form.buy-widget[data-add-to-cart="true"]',
-        stickyButtonSelector: 'button',
-        buyButtonSelector: '.btn-buy[type="submit"]',
+        pdpBuyFormSelector: 'form.buy-widget[data-add-to-cart="true"]',
+        pdpBuyButtonSelector: 'button.btn-buy[type="submit"], button[type="submit"]',
+        stickyButtonSelector: '[data-sticky-add-to-cart-button]',
     };
 
     // Instance variable declaration (for more readability)
-    _buyForm = null;
+    _pdpBuyForm = null;
     _stickyButton = null;
     _onScroll = null;
     _onResize = null;
 
     init() {
-        this._buyForm = document.querySelector(this.options.buyFormSelector);
+        this._pdpBuyForm = document.querySelector(this.options.pdpBuyFormSelector);
         this._stickyButton = this.el.querySelector(this.options.stickyButtonSelector);
 
         if (null !== this._stickyButton) {
@@ -35,7 +35,7 @@ export default class StickyAddToCart extends Plugin {
     }
 
     update() {
-        this._buyForm = document.querySelector(this.options.buyFormSelector);
+        this._pdpBuyForm = document.querySelector(this.options.pdpBuyFormSelector);
         this._syncVisibility();
     }
 
@@ -45,14 +45,14 @@ export default class StickyAddToCart extends Plugin {
 
     _syncVisibility() {
         // Re-query to avoid stale references after DOM updates.
-        this._buyForm = document.querySelector(this.options.buyFormSelector);
+        this._pdpBuyForm = document.querySelector(this.options.pdpBuyFormSelector);
 
-        if (null === this._buyForm) {
+        if (null === this._pdpBuyForm) {
             this.el.classList.remove('is-visible');
             return;
         }
 
-        const rect = this._buyForm.getBoundingClientRect();
+        const rect = this._pdpBuyForm.getBoundingClientRect();
         const isBuyFormOutOfView = rect.bottom <= 0;
 
         const isMobile = this._isMobileViewport();
@@ -66,18 +66,18 @@ export default class StickyAddToCart extends Plugin {
     }
 
     _triggerAddToCart() {
-        if (null === this._buyForm) {
+        if (null === this._pdpBuyForm) {
             return;
         }
 
-        const buyButton = this._buyForm.querySelector(this.options.buyButtonSelector);
-        if (null === buyButton || true === buyButton.disabled) {
+        const pdpBuyButton = this._pdpBuyForm.querySelector(this.options.pdpBuyButtonSelector);
+        if (null === pdpBuyButton || true === pdpBuyButton.disabled) {
             return;
         }
 
-        if (typeof this._buyForm.requestSubmit === 'function') {
+        if (typeof this._pdpBuyForm.requestSubmit === 'function') {
             try {
-                this._buyForm.requestSubmit(buyButton);
+                this._pdpBuyForm.requestSubmit(pdpBuyButton);
                 return;
             } catch (_e) {
                 /*
@@ -91,6 +91,6 @@ export default class StickyAddToCart extends Plugin {
             }
         }
 
-        buyButton.click();
+        pdpBuyButton.click();
     }
 }
