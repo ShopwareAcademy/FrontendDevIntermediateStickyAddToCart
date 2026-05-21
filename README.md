@@ -34,7 +34,7 @@ bin/console cache:clear
 MIT License.
 
 You may use this plugin in commercial and professional projects.
-It is provided as an educational example and comes without warranty and without support.
+It is provided as an educational example and comes without a warranty and without support.
 
 ## Contributing
 

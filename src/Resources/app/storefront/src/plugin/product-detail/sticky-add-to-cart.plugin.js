@@ -1,7 +1,8 @@
-import Plugin from 'src/plugin-system/plugin.class';
 import ViewportDetection from 'src/helper/viewport-detection.helper';
 
-export default class StickyAddToCart extends Plugin {
+const { PluginBaseClass } = window;
+
+export default class StickyAddToCart extends PluginBaseClass {
 
     static options = {
         pdpBuyFormSelector: 'form.buy-widget[data-add-to-cart="true"]',
